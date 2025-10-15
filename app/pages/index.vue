@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Kai van Wezel</h1>
+
     <div class="page"></div>
     <div class="page"></div>
     <div class="page"></div>

@@ -1,12 +1,14 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 export default defineNuxtPlugin((nuxtApp) => {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, SplitText);
 
   return {
     provide: {
       gsap,
       ScrollTrigger,
+      SplitText,
     },
   };
 });
