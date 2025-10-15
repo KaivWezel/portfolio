@@ -1,0 +1,36 @@
+// Sass functions for generating random colors
+
+// Function to generate a random color
+@function random-color() {
+  $red: random(255);
+  $green: random(255);
+  $blue: random(255);
+  @return rgb($red, $green, $blue);
+}
+
+// Function to generate a random color with alpha
+@function random-color-alpha($alpha: 1) {
+  $red: random(255);
+  $green: random(255);
+  $blue: random(255);
+  @return rgba($red, $green, $blue, $alpha);
+}
+
+// Function to generate a random HSL color
+@function random-hsl-color($saturation: 50%, $lightness: 50%) {
+  $hue: random(360);
+  @return hsl($hue, $saturation, $lightness);
+}
+
+// Function to generate a seeded HSL color based on a number
+@function seeded-hsl-color($seed, $saturation: 50%, $lightness: 50%) {
+  // Use the seed to create a pseudo-random hue
+  $hue: ($seed * 137.508) % 360; // Golden angle for good distribution
+  @return hsl($hue, $saturation, $lightness);
+}
+
+// Function to generate multiple distinct colors
+@function color-from-index($index, $saturation: 70%, $lightness: 60%) {
+  $hue: ($index * 137.508) % 360; // Golden angle spacing
+  @return hsl($hue, $saturation, $lightness);
+}

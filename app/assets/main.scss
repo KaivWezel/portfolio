@@ -1,0 +1,13 @@
+@import "lenis/dist/lenis.css";
+
+$font-default: "helvetica-neue-lt-pro", serif;
+
+*,
+html {
+  font-family: "helvetica-neue-lt-pro", serif;
+  font-weight: normal;
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
