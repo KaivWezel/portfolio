@@ -1,15 +1,17 @@
 <script setup>
-onMounted(() => {
-  console.log("page provider mounted");
-});
+const router = useRouter();
 
-const obj = reactive({
-  name: "Kai",
-  age: 24,
-  job: "developer",
-});
+router.beforeEach((to, from, next) => {
+  console.log("Navigating from", from.fullPath, "to", to.fullPath);
+  // Set page state to leave:start
 
-provide("user", obj);
+  // When ended, set to leave:end
+  setTimeout(() => {
+    // Calling next to start navigation
+    next();
+    // Imediately set to enter:start
+  }, 1000);
+});
 </script>
 <template>
   <div>

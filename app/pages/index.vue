@@ -1,5 +1,6 @@
 <template>
   <div>
+    <nuxt-link to="/about">About</nuxt-link>
     <h1>Kai van Wezel</h1>
 
     <div class="page"></div>

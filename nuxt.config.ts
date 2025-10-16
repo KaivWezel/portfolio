@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   css: ["~/assets/main.scss"],
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -12,9 +13,12 @@ export default defineNuxtConfig({
       },
     },
   },
+
   app: {
     head: {
       link: [{ rel: "stylesheet", href: "https://use.typekit.net/lhz1gdy.css" }],
     },
   },
+
+  modules: ["@pinia/nuxt"],
 });
