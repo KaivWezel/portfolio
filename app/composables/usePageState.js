@@ -1,22 +1,15 @@
 import { PageStates } from "~/data/pageStates";
 
-export default function usePageEnter(cb) {
-  const pageState = useState("pageState", () => "enter:start");
-
-  watch(pageState, (state) => {
-    if (state === PageStates.ENTER_START) {
-      cb();
-    }
-  });
+export function usePageEnter(cb) {
+  watch(
+    () => usePageStore().pageState,
+    (state) => state === PageStates.ENTER_START && cb()
+  );
 }
 
-export default function usePageEnter(cb) {
-  const pageState = useState("pageState", () => "enter:start");
-
-  watch(pageState, (state) => {
-    if (state === PageStates.ENTER_START) {
-      cb();
-    }
-  });
-
+export function usePageLeave(cb) {
+  watch(
+    () => usePageStore().pageState,
+    (state) => state === PageStates.LEAVE_START && cb()
+  );
 }

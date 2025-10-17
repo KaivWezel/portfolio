@@ -1,9 +1,9 @@
 import { PageStates } from "~/data/pageStates";
 
-type PageState = "enter:start" | "enter:end" | "leave:start" | "leave:end";
+type PageState = (typeof PageStates)[keyof typeof PageStates];
 
 export const usePageStore = defineStore("page", () => {
-  const pageState = ref<PageState>("enter:start");
+  const pageState = ref<PageState>(PageStates.ENTER_START);
 
   function setPageState(state: PageState) {
     pageState.value = state;

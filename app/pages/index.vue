@@ -1,12 +1,19 @@
+<script setup>
+import { usePageEnter } from "~/composables/usePageState";
+const { $gsap } = useNuxtApp();
+
+const refTitle = ref(null);
+</script>
 <template>
   <div>
     <nuxt-link to="/about">About</nuxt-link>
-    <h1>Kai van Wezel</h1>
+    <h1 ref="refTitle">Kai van Wezel</h1>
+    <!-- <Button /> -->
 
+    <!-- <div class="page"></div>
     <div class="page"></div>
     <div class="page"></div>
-    <div class="page"></div>
-    <div class="page"></div>
+    <div class="page"></div> -->
   </div>
 </template>
 <style lang="scss">
