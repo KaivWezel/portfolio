@@ -13,7 +13,7 @@ onMounted(() => {
 usePageEnter(() => {
   console.log("about page entering");
   const tl = $gsap.timeline();
-  tl.fromTo(refTitle.value, { y: "100%" }, { y: "0%", duration: 0.4, ease: "power4.out" });
+  tl.fromTo(refTitle.value, { y: "100%" }, { y: "0%", duration: 0.4, ease: "power2.out" });
   tl.fromTo(
     refWordMark.value,
     { y: "100%" },
@@ -22,20 +22,25 @@ usePageEnter(() => {
       duration: 0.4,
       ease: "power4.out",
       stagger: 0.05,
-    }
+    },
+    0
   );
 });
 
 usePageLeave(() => {
   console.log("about page leaving");
   const tl = $gsap.timeline();
-  tl.to(refTitle.value, { y: "-100%", duration: 0.4, ease: "power4.out" });
-  tl.to(refWordMark.value, {
-    y: "-100%",
-    duration: 0.4,
-    ease: "power4.out",
-    stagger: 0.05,
-  });
+  tl.to(refTitle.value, { y: "-100%", duration: 0.4, ease: "power4.inOut" });
+  tl.to(
+    refWordMark.value,
+    {
+      y: "-100%",
+      duration: 0.4,
+      ease: "power4.out",
+      stagger: 0.05,
+    },
+    0
+  );
   transitionStore.registerOutro(tl);
 });
 
