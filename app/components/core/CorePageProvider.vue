@@ -5,28 +5,28 @@ const router = useRouter();
 const pageStore = usePageStore();
 const transitionStore = useTransitionStore();
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, from) => {
   // Set page state to leave:start
   pageStore.setPageState(PageStates.LEAVE_START);
 
   await nextTick();
-
   // Wait for all leave animations to complete
-  await new Promise((resolve) => {
-    transitionStore.resolvePromises(() => {
-      console.log("All leave animations completed");
-      resolve();
-      pageStore.setPageState(PageStates.ENTER_START);
-    });
+  await transitionStore.resolvePromises(() => {
+    console.log("All leave animations completed");
   });
-
-  next();
 
   // Navigation continues automatically after the promise resolves
 });
 
+router.afterEach((to, from) => {
+  // Set page state to enter:start after navigation completes and new page is mounted
+  nextTick(() => {
+    pageStore.setPageState(PageStates.ENTER_START);
+  });
+});
+
 function onSetPageState(newState) {
-  console.log("Page state changed to:", newState);
+  // console.log("Page state changed to:", newState);
 }
 
 watch(

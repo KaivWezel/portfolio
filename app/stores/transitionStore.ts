@@ -6,10 +6,9 @@ export const useTransitionStore = defineStore("transition", () => {
     promises.value.push(promise);
   }
 
-  function resolvePromises(cb: () => void) {
-    return Promise.all(promises.value).then(() => {
-      cb();
-    });
+  async function resolvePromises(cb: () => void) {
+    await Promise.all(promises.value);
+    cb();
   }
 
   return {
