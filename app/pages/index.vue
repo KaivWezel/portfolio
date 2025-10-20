@@ -11,13 +11,13 @@ usePageLeave(() => {
 });
 
 usePageEnter(() => {
-  $gsap.fromTo(refTitle.value, { y: "100%" }, { y: "0%", duration: 0.5, ease: "power4.out" });
+  $gsap.fromTo(refTitle.value, { opacity: 0, y: "100%" }, { opacity: 1, y: "0%", duration: 0.5, ease: "power4.out" });
 });
 </script>
 <template>
   <Page>
     <div class="overflow-hidden">
-      <h1 ref="refTitle">Home</h1>
+      <h1 ref="refTitle" style="opacity: 0">Home</h1>
     </div>
   </Page>
 </template>

@@ -34,7 +34,7 @@ usePageLeave(() => {
   tl.to(
     refWordMark.value,
     {
-      y: "-100%",
+      y: "-105%",
       duration: 0.4,
       ease: "power4.out",
       stagger: 0.05,
@@ -42,10 +42,6 @@ usePageLeave(() => {
     0
   );
   transitionStore.registerOutro(tl);
-});
-
-onUnmounted(() => {
-  console.log("about page unmounted");
 });
 </script>
 <template>

@@ -1,7 +1,7 @@
 <template>
   <nav class="navBar">
     <nuxt-link to="/">Home</nuxt-link>
-    <nuxt-link to="/work">Work</nuxt-link>
+    <BtnMain url="/work" />
     <nuxt-link to="/about">About</nuxt-link>
   </nav>
 </template>
@@ -10,6 +10,11 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
-  padding: 0.5rem;
+  padding: 1rem 0;
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
 }
 </style>

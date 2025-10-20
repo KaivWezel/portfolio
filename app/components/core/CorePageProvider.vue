@@ -11,9 +11,7 @@ router.beforeEach(async (to, from) => {
 
   await nextTick();
   // Wait for all leave animations to complete
-  await transitionStore.resolvePromises(() => {
-    console.log("All leave animations completed");
-  });
+  await transitionStore.resolvePromises(() => {});
 
   // Navigation continues automatically after the promise resolves
 });
@@ -26,20 +24,19 @@ router.afterEach((to, from) => {
 });
 
 function onSetPageState(newState) {
-  // console.log("Page state changed to:", newState);
+  console.log("Page state changed to:", newState);
 }
+
+// Use nuxt app hook for initial pageload
+useNuxtApp().hook("page:finish", async () => {
+  console.log("Initial page load finished");
+  pageStore.setPageState(PageStates.ENTER_START);
+});
 
 watch(
   () => pageStore.pageState,
   (state) => {
     onSetPageState(state);
-  }
-);
-
-watch(
-  () => pageStore.pageState,
-  (state) => {
-    // console.log("Page state changed to", state);
   }
 );
 </script>
