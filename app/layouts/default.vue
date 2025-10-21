@@ -1,5 +1,6 @@
+<script setup></script>
 <template>
-  <div>
+  <div class="relative">
     <Navigation />
     <slot />
   </div>

@@ -1,23 +1,32 @@
 <script setup>
-import { usePageEnter, usePageLeave } from "~/composables/usePageState";
-const { $gsap } = useNuxtApp();
-const transitionStore = useTransitionStore();
+import gsap from "gsap";
+
+definePageMeta({
+  pageTransition: {
+    name: "custom-reveal",
+    onEnter: (el, done) => {
+      gsap
+        .fromTo(el, { clipPath: `inset(0 0 100% 0)` }, { clipPath: "inset(0 0 0% 0)", duration: 1, ease: "expo.inOut" })
+        .then(done);
+    },
+    onLeave: (el, done) => {
+      gsap.to(el, { y: "50%", duration: 1, ease: "expo.inOut" }).then(done);
+    },
+  },
+});
 
 const refTitle = ref(null);
-
-usePageLeave(() => {
-  const outro = $gsap.to(refTitle.value, { y: "-100%", duration: 0.4, ease: "power4.inOut" });
-  transitionStore.registerOutro(outro);
-});
-
-usePageEnter(() => {
-  $gsap.fromTo(refTitle.value, { opacity: 0, y: "100%" }, { opacity: 1, y: "0%", duration: 0.5, ease: "power4.out" });
-});
 </script>
 <template>
-  <Page>
+  <Page class="home">
     <div class="overflow-hidden">
-      <h1 ref="refTitle" style="opacity: 0">Home</h1>
+      <h1 ref="refTitle">Home</h1>
     </div>
   </Page>
 </template>
+
+<style>
+.page.home {
+  background: lightblue;
+}
+</style>

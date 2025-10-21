@@ -1,51 +1,22 @@
 <script setup>
-import { usePageLeave, usePageEnter } from "~/composables/usePageState";
+import gsap from "gsap";
 
-const transitionStore = useTransitionStore();
-const { $gsap } = useNuxtApp();
-
-const refTitle = ref(null);
-const refWordMark = ref([]);
-onMounted(() => {
-  console.log("🚀 ~ refWordMark:", refWordMark);
-});
-
-usePageEnter(() => {
-  console.log("about page entering");
-  const tl = $gsap.timeline();
-  tl.fromTo(refTitle.value, { y: "100%" }, { y: "0%", duration: 0.4, ease: "power2.out" });
-  tl.fromTo(
-    refWordMark.value,
-    { y: "100%" },
-    {
-      y: "0%",
-      duration: 0.4,
-      ease: "power4.out",
-      stagger: 0.05,
+definePageMeta({
+  pageTransition: {
+    name: "custom-reveal",
+    onEnter: (el, done) => {
+      gsap
+        .fromTo(el, { clipPath: `inset(0 0 100% 0)` }, { clipPath: "inset(0 0 0% 0)", duration: 1, ease: "expo.inOut" })
+        .then(done);
     },
-    0
-  );
-});
-
-usePageLeave(() => {
-  console.log("about page leaving");
-  const tl = $gsap.timeline();
-  tl.to(refTitle.value, { y: "-100%", duration: 0.4, ease: "power4.inOut" });
-  tl.to(
-    refWordMark.value,
-    {
-      y: "-105%",
-      duration: 0.4,
-      ease: "power4.out",
-      stagger: 0.05,
+    onLeave: (el, done) => {
+      gsap.to(el, { y: "50%", duration: 1.2, ease: "expo.inOut" }).then(done);
     },
-    0
-  );
-  transitionStore.registerOutro(tl);
+  },
 });
 </script>
 <template>
-  <Page>
+  <Page class="about">
     <div class="overflow-hidden">
       <h1 ref="refTitle">about</h1>
     </div>
@@ -57,6 +28,10 @@ usePageLeave(() => {
   </Page>
 </template>
 <style>
+.page.about {
+  background: coral;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
