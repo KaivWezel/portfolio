@@ -30,14 +30,13 @@ usePageEnter(() => {
 usePageLeave(() => {
   console.log("about page leaving");
   const tl = $gsap.timeline();
-  tl.to(refTitle.value, { y: "-100%", duration: 0.4, ease: "power4.inOut" });
+  tl.to(refTitle.value, { y: "-100%", duration: 0.4, ease: "power2.in" });
   tl.to(
     refWordMark.value,
     {
       y: "-105%",
       duration: 0.4,
-      ease: "power4.out",
-      stagger: 0.05,
+      ease: "power2.in",
     },
     0
   );

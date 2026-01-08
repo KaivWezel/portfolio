@@ -6,7 +6,8 @@
 </template>
 <style lang="scss">
 .navBar {
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
   z-index: 100;
 }

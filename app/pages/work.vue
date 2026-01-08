@@ -8,7 +8,6 @@ const transitionStore = useTransitionStore();
 const refTitle = ref(null);
 const refProjectTitle = ref(null);
 const refImage = ref([]);
-console.log("🚀 ~ refImage:", refImage);
 
 const activeProject = ref("Sculpting Harmony");
 
@@ -23,7 +22,7 @@ usePageEnter(async () => {
 
   // Start animation once images are ready
   const tl = $gsap.timeline();
-  tl.fromTo(refTitle.value, { y: "100%" }, { y: "0%", duration: 0.4, ease: "power2.out" });
+  tl.fromTo(refTitle.value, { opacity: 0, y: "100%" }, { opacity: 1, y: "0%", duration: 0.4, ease: "power2.out" });
   tl.fromTo(
     refProjectTitle.value,
     { y: "100%" },
@@ -45,8 +44,8 @@ usePageEnter(async () => {
 usePageLeave(() => {
   console.log("work page leaving");
   const tl = $gsap.timeline();
-  tl.to(refTitle.value, { y: "-100%", duration: 0.4, ease: "power2.in" });
-  tl.to(refProjectTitle.value, { y: "-100%", duration: 0.4, ease: "power2.in" }, 0);
+  tl.to(refTitle.value, { y: "-100%", opacity: 0, duration: 0.4, ease: "power2.in" });
+  tl.to(refProjectTitle.value, { y: "-100%", opacity: 0, duration: 0.4, ease: "power2.in" }, 0);
   tl.to(
     refImage.value,
     {
@@ -63,34 +62,16 @@ usePageLeave(() => {
 </script>
 <template>
   <Page class="page-work">
-    <div>
-      <div class="overflow-hidden">
-        <h1 ref="refTitle">Work</h1>
-      </div>
-      <div class="overflow-hidden">
-        <h2 ref="refProjectTitle">{{ activeProject }}</h2>
-      </div>
-    </div>
-    <div class="projects">
-      <img :ref="(el) => refImage.push(el)" src="/images/projects/sculpting-harmony/sh-navigation.png" alt="" />
-      <img :ref="(el) => refImage.push(el)" src="/images/projects/sculpting-harmony/sh-navigation.png" alt="" />
-      <img :ref="(el) => refImage.push(el)" src="/images/projects/sculpting-harmony/sh-navigation.png" alt="" />
-      <img :ref="(el) => refImage.push(el)" src="/images/projects/sculpting-harmony/sh-navigation.png" alt="" />
+    <div class="page-work__titles">
+      <h1 ref="refTitle"><span>Work</span></h1>
+      <h2 ref="refProjectTitle">{{ activeProject }}</h2>
     </div>
   </Page>
 </template>
 <style lang="scss">
 .page.page-work {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-
-  .overflow-hidden {
-    overflow: hidden;
-
-    * {
-      transform: translateY(100%);
-    }
-  }
+  // display: grid;
+  // grid-template-columns: 1fr 2fr;
 
   h1 {
     font-size: 1rem;

@@ -1,7 +1,7 @@
 <template>
   <nav class="navBar">
     <nuxt-link to="/">Home</nuxt-link>
-    <BtnMain url="/work" />
+    <BtnMain url="/work" label="Work" />
     <nuxt-link to="/about">About</nuxt-link>
   </nav>
 </template>
