@@ -1,0 +1,1 @@
+import{v as s,n}from"./C7Yl9aiW.js";const o={ENTER_START:"enter:start",LEAVE_START:"leave:start"};function S(t){const e=s();n(()=>e.pageState,async a=>{a===o.ENTER_START&&(await t(),e.send("entered"),e.send("idle"))})}function T(t){const e=s();n(()=>e.pageState,a=>a===o.LEAVE_START&&t())}export{T as a,S as u};

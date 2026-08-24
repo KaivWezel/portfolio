@@ -1,0 +1,1 @@
+import{_ as e}from"./Cvr3Y5lF.js";import{j as r,w as a,d as o,t as n,y as u,q as l,o as s}from"./C7Yl9aiW.js";const p={__name:"BtnMain",props:{url:{type:String,required:!1},label:{type:String,required:!0,default:"Main Button"}},setup(t){return(i,c)=>(s(),r(u(t.url?l(e):"button"),{to:t.url,ref:"refRoot"},{default:a(()=>[o(n(t.label),1)]),_:1},8,["to"]))}};export{p as default};

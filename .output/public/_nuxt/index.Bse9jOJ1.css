@@ -1,0 +1,1 @@
+.hero{align-items:center;display:grid;gap:1rem;grid-template-columns:1fr auto 1fr;width:100%}.hero h1{font-size:1rem;justify-self:center;transform:translate(60vh);white-space:nowrap}.hero img{aspect-ratio:4/5;max-height:60vh;-o-object-fit:cover;object-fit:cover;width:100%}.hero h2{flex-shrink:0;font-size:1rem;justify-self:center;white-space:nowrap}
