@@ -1,0 +1,1 @@
+import{o as t,c as a,a as r,t as s}from"./BHG1g9c8.js";const n={class:"animatedText__wrapper"},i={__name:"AnimatedText",props:{text:{type:String,required:!0}},setup(e){return(o,c)=>(t(),a("div",n,[r("span",null,s(e.text),1)]))}};export{i as default};

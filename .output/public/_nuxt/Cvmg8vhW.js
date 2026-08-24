@@ -1,0 +1,1 @@
+import{u as e,a as o}from"./BIE_ZbBq.js";import{c as t,o as a}from"./BHG1g9c8.js";const u={__name:"Button",setup(n){return e(()=>{console.log("Button component mounted")}),o(()=>{console.log("UsePageLeave called before navigation")}),(l,s)=>(a(),t("button",null,"Global button"))}};export{u as default};

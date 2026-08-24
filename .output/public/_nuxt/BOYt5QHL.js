@@ -1,0 +1,1 @@
+import{_ as s,c as t,q as n,o}from"./BHG1g9c8.js";const c={},_={class:"page"};function a(e,r){return o(),t("div",_,[n(e.$slots,"default")])}const d=Object.assign(s(c,[["render",a]]),{__name:"Page"});export{d as default};
