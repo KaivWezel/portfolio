@@ -6,12 +6,8 @@ const { $gsap } = useNuxtApp();
 
 const refTitle = ref(null);
 const refWordMark = ref([]);
-onMounted(() => {
-  console.log("🚀 ~ refWordMark:", refWordMark);
-});
 
 usePageEnter(() => {
-  console.log("about page entering");
   const tl = $gsap.timeline();
   tl.fromTo(refTitle.value, { y: "100%" }, { y: "0%", duration: 0.4, ease: "power2.out" });
   tl.fromTo(
@@ -23,12 +19,11 @@ usePageEnter(() => {
       ease: "power4.out",
       stagger: 0.05,
     },
-    0
+    0,
   );
 });
 
 usePageLeave(() => {
-  console.log("about page leaving");
   const tl = $gsap.timeline();
   tl.to(refTitle.value, { y: "-100%", duration: 0.4, ease: "power2.in" });
   tl.to(
@@ -38,7 +33,7 @@ usePageLeave(() => {
       duration: 0.4,
       ease: "power2.in",
     },
-    0
+    0,
   );
   transitionStore.registerOutro(tl);
 });

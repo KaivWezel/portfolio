@@ -1,9 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import { usePageLeave, usePageEnter } from "~/composables/usePageState";
 import { useImagePreload } from "~/composables/useImagePreload";
 
 const { $gsap } = useNuxtApp();
-const transitionStore = useTransitionStore();
 
 const refTitle = ref(null);
 const refProjectTitle = ref(null);
@@ -12,16 +11,18 @@ const refImage = ref([]);
 const activeProject = ref("Sculpting Harmony");
 
 // Preload images
-const { waitForImages } = useImagePreload(refImage);
+const preloadResult = useImagePreload(refImage);
+const { waitForImages } = preloadResult as any;
+let tl: GSAPTimeline | null = null;
 
 usePageEnter(async () => {
-  console.log("work page entering");
+  if (tl) tl.kill(); // Kill any ongoing animations
 
   // Wait for all images to load
   await waitForImages();
 
   // Start animation once images are ready
-  const tl = $gsap.timeline();
+  tl = $gsap.timeline();
   tl.fromTo(refTitle.value, { opacity: 0, y: "100%" }, { opacity: 1, y: "0%", duration: 0.4, ease: "power2.out" });
   tl.fromTo(
     refProjectTitle.value,
@@ -31,33 +32,38 @@ usePageEnter(async () => {
       duration: 0.4,
       ease: "power2.out",
     },
-    0
+    0,
   );
   tl.fromTo(
     refImage.value,
     { opacity: 0, y: 20 },
     { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" },
-    0.2
+    0.2,
   );
 });
 
 usePageLeave(() => {
-  console.log("work page leaving");
-  const tl = $gsap.timeline();
-  tl.to(refTitle.value, { y: "-100%", opacity: 0, duration: 0.4, ease: "power2.in" });
-  tl.to(refProjectTitle.value, { y: "-100%", opacity: 0, duration: 0.4, ease: "power2.in" }, 0);
-  tl.to(
-    refImage.value,
-    {
-      opacity: 0,
-      y: -20,
-      duration: 0.4,
-      ease: "power2.in",
-      stagger: 0.1,
-    },
-    0
-  );
-  transitionStore.registerOutro(tl);
+  return new Promise<void>((resolve) => {
+    tl = $gsap.timeline();
+    tl.to(refTitle.value, { y: "-100%", opacity: 0, duration: 0.4, ease: "power2.in" });
+    tl.to(refProjectTitle.value, { y: "-100%", opacity: 0, duration: 0.4, ease: "power2.in" }, 0);
+    tl.to(
+      refImage.value,
+      {
+        opacity: 0,
+        y: -20,
+        duration: 0.4,
+        ease: "power2.in",
+        stagger: 0.1,
+      },
+      0,
+    );
+    if (tl) {
+      tl.eventCallback("onComplete", resolve);
+    } else {
+      resolve();
+    }
+  });
 });
 </script>
 <template>

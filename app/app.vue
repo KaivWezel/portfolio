@@ -1,3 +1,6 @@
+<script setup>
+const pageStore = usePageStore();
+</script>
 <template>
   <CorePageProvider>
     <CoreSmoothScrollProvider>

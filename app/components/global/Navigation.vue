@@ -11,6 +11,10 @@
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 
   a {
     color: black;

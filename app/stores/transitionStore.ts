@@ -6,15 +6,17 @@ export const useTransitionStore = defineStore("transition", () => {
     promises.value.push(promise);
   }
 
-  async function resolvePromises(cb: () => void) {
+  async function runOutro() {
+    isTransitioning.value = true;
     await Promise.all(promises.value);
-    cb();
+    promises.value = [];
+    isTransitioning.value = false;
   }
 
   return {
     promises,
     isTransitioning,
     registerOutro,
-    resolvePromises,
+    runOutro,
   };
 });
